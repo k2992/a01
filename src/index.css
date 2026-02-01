@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-neutral-100 font-mono antialiased selection:bg-accent/30 selection:text-white;
+  }
+}
+
+@layer components {
+  .card-imperium {
+    @apply bg-black/40 border border-white/5 relative overflow-hidden;
+  }
+  
+  .hud-corner-tl { @apply absolute top-0 left-0 w-2 h-2 border-t border-l border-accent; }
+  .hud-corner-tr { @apply absolute top-0 right-0 w-2 h-2 border-t border-r border-accent; }
+  .hud-corner-bl { @apply absolute bottom-0 left-0 w-2 h-2 border-b border-l border-accent; }
+  .hud-corner-br { @apply absolute bottom-0 right-0 w-2 h-2 border-b border-r border-accent; }
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #1f1f1f; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #2f2f2f; }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
