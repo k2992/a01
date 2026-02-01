@@ -1,9 +1,9 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Terminal, Activity, Layers, Disc } from 'lucide-react';
 
-const LandingPage: React.FC = () => {
+export const LandingPage = () => {
   const [logoClicks, setLogoClicks] = useState(0);
   const [showSecretLink, setShowSecretLink] = useState(false);
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -30,7 +30,6 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col font-mono overflow-hidden relative selection:bg-sky-500 selection:text-black">
-      {/* Dynamic Header */}
       <nav className="h-16 border-b border-white/5 px-8 flex items-center justify-between z-50">
         <div 
           onClick={handleLogoClick}
@@ -64,9 +63,7 @@ const LandingPage: React.FC = () => {
         </div>
       </nav>
 
-      {/* Main Mysterious Viewport */}
       <main className="flex-1 relative flex items-center justify-center p-8">
-        {/* Subtle grid elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[70vh] border border-white/5 pointer-events-none -z-10">
           <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-sky-500 opacity-20"></div>
           <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-sky-500 opacity-20"></div>
@@ -75,7 +72,6 @@ const LandingPage: React.FC = () => {
         </div>
 
         <div className="max-w-4xl w-full flex flex-col items-center">
-          {/* Abstract Hero */}
           <div className="text-center space-y-2 mb-12">
             <div className="inline-block px-4 py-1 border border-white/5 mb-4">
                <span className="text-[9px] text-gray-500 uppercase tracking-[0.6em]">Protocol_a01</span>
@@ -92,7 +88,6 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Compact Info Matrix */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
             {[
               { icon: Terminal, label: 'Node_Status', val: 'Active' },
@@ -110,7 +105,6 @@ const LandingPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Abstract Data Visualization (Mini) */}
           <div className="mt-12 w-full max-w-lg h-12 flex items-end gap-1 px-4">
              {Array.from({length: 40}).map((_, i) => (
                <div 
@@ -124,7 +118,6 @@ const LandingPage: React.FC = () => {
         </div>
       </main>
 
-      {/* Persistent Footer Stats */}
       <footer className="h-12 border-t border-white/5 px-8 flex items-center justify-between text-[9px] text-gray-600 uppercase tracking-widest z-50 bg-black/50 backdrop-blur-md">
         <div className="flex items-center gap-6">
           <span className="flex items-center gap-2">
@@ -146,21 +139,6 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </footer>
-
-      {/* Side HUD Elements */}
-      <div className="hidden lg:block fixed left-4 top-1/2 -translate-y-1/2 space-y-4 opacity-30">
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto"></div>
-        <div className="vertical-text text-[8px] tracking-[0.5em] text-white uppercase whitespace-nowrap" style={{writingMode: 'vertical-rl'}}>SOVEREIGN_INFRASTRUCTURE</div>
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto"></div>
-      </div>
-      
-      <div className="hidden lg:block fixed right-4 top-1/2 -translate-y-1/2 space-y-4 opacity-30">
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto"></div>
-        <div className="vertical-text text-[8px] tracking-[0.5em] text-white uppercase whitespace-nowrap" style={{writingMode: 'vertical-rl'}}>METALAB_CORPORATION_2026</div>
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto"></div>
-      </div>
     </div>
   );
 };
-
-export default LandingPage;

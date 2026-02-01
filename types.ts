@@ -1,9 +1,9 @@
 
-export interface HealthStatus {
+export type HealthStatus = {
   ok: boolean;
-}
+};
 
-export interface User {
+export type User = {
   username: string;
   role: 'admin' | 'user';
-}
+};

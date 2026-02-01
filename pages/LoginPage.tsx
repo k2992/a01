@@ -1,19 +1,18 @@
 
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
 
-const LoginPage: React.FC = () => {
+export const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate auth delay
     setTimeout(() => {
       login({ username, password });
       navigate('/app/control');
@@ -22,12 +21,10 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden font-mono bg-black">
-      {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-accent/10 to-transparent"></div>
       
       <div className="max-w-md w-full relative z-10">
         <div className="card-imperium p-10 relative">
-          {/* Corner accents */}
           <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-accent"></div>
           <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-accent"></div>
           <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-accent"></div>
@@ -86,7 +83,6 @@ const LoginPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Secondary warning text */}
         <p className="mt-8 text-[8px] text-gray-700 text-center uppercase tracking-[0.2em] leading-relaxed px-8">
           Notice: All login attempts are monitored and recorded. Unauthorized access is strictly prohibited.
         </p>
@@ -94,5 +90,3 @@ const LoginPage: React.FC = () => {
     </div>
   );
 };
-
-export default LoginPage;

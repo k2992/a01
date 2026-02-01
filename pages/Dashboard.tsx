@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   Activity, 
@@ -13,7 +13,6 @@ import {
   Zap,
   TrendingUp,
   Award,
-  HelpCircle,
   Info
 } from 'lucide-react';
 import { 
@@ -39,7 +38,7 @@ const MOCK_CHART_DATA = [
   { name: 'Week 7', growth: 54200, usage: 40 },
 ];
 
-const Control: React.FC = () => {
+export const Dashboard = () => {
   const navigate = useNavigate();
   const [totalMoney, setTotalMoney] = useState(0);
   const [monthlyBudget, setMonthlyBudget] = useState(0);
@@ -47,21 +46,11 @@ const Control: React.FC = () => {
   const [teamCount, setTeamCount] = useState(0);
 
   useEffect(() => {
-    const assets = JSON.parse(localStorage.getItem('metalab_assets') || '[]');
-    const assetsTotal = assets.reduce((acc: number, a: any) => acc + (a.value || 0), 0);
-    
-    const autos = JSON.parse(localStorage.getItem('metalab_automations') || '[]');
-    const income = autos.filter((a: any) => a.type === 'INCOMING' && a.status === 'ACTIVE').reduce((acc: number, a: any) => acc + a.amount, 0);
-    const expenses = autos.filter((a: any) => a.type === 'OUTGOING' && a.status === 'ACTIVE').reduce((acc: number, a: any) => acc + a.amount, 0);
-    
-    setTotalMoney(assetsTotal);
-    setMonthlyBudget(income - expenses);
-
-    const projects = JSON.parse(localStorage.getItem('metalab_projects') || '[]');
-    setProjectCount(projects.filter((p: any) => p.status === 'ACTIVE').length);
-
-    const team = JSON.parse(localStorage.getItem('metalab_personnel') || '[]');
-    setTeamCount(team.length + 1);
+    // localStorage removed as per strict rules. Using mock values.
+    setTotalMoney(54200);
+    setMonthlyBudget(2250);
+    setProjectCount(1);
+    setTeamCount(3);
   }, []);
 
   const handleSafetyLock = () => {
@@ -75,7 +64,6 @@ const Control: React.FC = () => {
 
   return (
     <div className="space-y-10 max-w-7xl mx-auto font-mono pb-20">
-      {/* Help Banner */}
       <div className="p-4 bg-accent/5 border border-accent/20 rounded-sm flex gap-4">
         <Info className="text-accent shrink-0" size={20} />
         <div>
@@ -87,7 +75,6 @@ const Control: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#1f1f1f] pb-8 gap-6">
         <div className="flex items-center gap-6">
           <div className="w-16 h-16 border border-accent/20 bg-accent/5 flex items-center justify-center text-accent shadow-[0_0_20px_rgba(14,165,233,0.1)]">
@@ -118,7 +105,6 @@ const Control: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Growth Chart */}
         <div className="lg:col-span-2 border border-[#1f1f1f] bg-black/40 p-6 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-[11px] font-bold uppercase text-gray-500 flex items-center gap-2">
@@ -145,7 +131,6 @@ const Control: React.FC = () => {
           </div>
         </div>
 
-        {/* Usage Stats */}
         <div className="border border-[#1f1f1f] bg-black/40 p-6 space-y-6">
           <h3 className="text-[11px] font-bold uppercase text-gray-500 flex items-center gap-2">
             <Activity size={14} /> Platform Usage
@@ -166,7 +151,6 @@ const Control: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Project Link */}
         <div className="border border-[#1f1f1f] bg-black/40 p-6 space-y-4 group hover:border-accent/30 transition-colors">
           <div className="flex items-center justify-between">
             <h3 className="text-[11px] font-bold uppercase text-gray-500 flex items-center gap-2">
@@ -182,7 +166,6 @@ const Control: React.FC = () => {
           </div>
         </div>
 
-        {/* Finance Link */}
         <div className="border border-[#1f1f1f] bg-black/40 p-6 space-y-4 group hover:border-accent/30 transition-colors">
           <div className="flex items-center justify-between">
             <h3 className="text-[11px] font-bold uppercase text-gray-500 flex items-center gap-2">
@@ -198,7 +181,6 @@ const Control: React.FC = () => {
           </div>
         </div>
 
-        {/* Team Link */}
         <div className="border border-[#1f1f1f] bg-black/40 p-6 space-y-4 group hover:border-accent/30 transition-colors">
           <div className="flex items-center justify-between">
             <h3 className="text-[11px] font-bold uppercase text-gray-500 flex items-center gap-2">
@@ -220,7 +202,6 @@ const Control: React.FC = () => {
         </div>
       </div>
 
-      {/* QUICK ACTIONS */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <button 
           onClick={handleSafetyLock}
@@ -245,5 +226,3 @@ const Control: React.FC = () => {
     </div>
   );
 };
-
-export default Control;

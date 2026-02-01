@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -12,12 +11,11 @@ import {
   Briefcase,
   Cpu,
   Wallet,
-  Server,
-  HelpCircle
+  Server
 } from 'lucide-react';
 import { logout } from '../services/api';
 
-const AdminShell: React.FC = () => {
+export const AdminShell = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -42,7 +40,6 @@ const AdminShell: React.FC = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#050505] font-mono">
-      {/* Sidebar */}
       <aside className="w-64 admin-sidebar flex flex-col z-20 border-r border-[#1f1f1f]">
         <div className="p-6 border-b border-[#1f1f1f] flex flex-col gap-1">
           <div className="flex items-center gap-3">
@@ -129,9 +126,7 @@ const AdminShell: React.FC = () => {
         </div>
       </aside>
 
-      {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Header */}
         <header className="h-16 px-8 flex items-center justify-between z-10 shrink-0 border-b border-[#1f1f1f]">
           <div className="flex items-center gap-4">
             <span className="text-[10px] text-gray-600 uppercase">Location:</span>
@@ -156,7 +151,6 @@ const AdminShell: React.FC = () => {
           </div>
         </header>
 
-        {/* Dynamic Page Content */}
         <main className="flex-1 overflow-y-auto p-8 relative custom-scrollbar bg-[#050505]">
           <Outlet />
         </main>
@@ -164,5 +158,3 @@ const AdminShell: React.FC = () => {
     </div>
   );
 };
-
-export default AdminShell;
